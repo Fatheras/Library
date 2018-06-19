@@ -1,15 +1,13 @@
-'use strict';
-var express = require("express");
-var bodyParser = require('body-parser');
+const express = require("express");
+const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const mongoClient = require('mongodb').MongoClient;
-var routes = require('./routes/index.js');
-//var user = require('./models/user.js');
-var port = process.env.PORT || 3000;
-var app = express();
+const routes = require('./routes/index.js');
+//const user = require('./models/user.js');
+const port = process.env.PORT || 3000;
+const app = express();
 const url = "mongodb://localhost:27017/testForAuth";
-//app.use('/public', express.static(process.cwd() + '/public'));
 app.use('/public', express.static(process.cwd() + '/public/stylesheets'));
 app.use(bodyParser.urlencoded({
   extended: false
@@ -18,16 +16,8 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 routes(app);
 
-/*app.post('/', function(req, res) {
-  new user({
-    email: req.body.email,
-    username: req.body.username,
-    password: req.body.password
-  }).save(function(err, doc) {
-    if (err) res.json(err);
-    else res.send('Successfully inserted!');
-  });
-}); */
+/* currently not working
+
 app.post("/", function(req, res) {
   debugger;
 
@@ -55,7 +45,7 @@ app.post("/", function(req, res) {
       client.close();
     });
   });
-});
+}); */
 
 app.listen(port, function() {
   console.log('Server listening on port ' + port + '...');
